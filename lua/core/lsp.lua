@@ -1,6 +1,117 @@
+local handlers = require 'vim.lsp.handlers'
+
+local env = {
+    HOME = vim.uv.os_homedir(),
+    XDG_CACHE_HOME = os.getenv 'XDG_CACHE_HOME',
+    JDTLS_JVM_ARGS = os.getenv 'JDTLS_JVM_ARGS',
+}
+
+local function get_cache_dir()
+    return env.XDG_CACHE_HOME and env.XDG_CACHE_HOME or env.HOME .. '/.cache'
+end
+
+local function get_jdtls_cache_dir()
+    return get_cache_dir() .. '/jdtls'
+end
+
+local function get_jdtls_config_dir()
+    return get_jdtls_cache_dir() .. '/config'
+end
+
+local function get_jdtls_workspace_dir()
+    return get_jdtls_cache_dir() .. '/workspace'
+end
+
+local function get_jdtls_jvm_args()
+    local args = {}
+    for a in string.gmatch((env.JDTLS_JVM_ARGS or ''), '%S+') do
+        local arg = string.format('--jvm-arg=%s', a)
+        table.insert(args, arg)
+    end
+    return unpack(args)
+end
+
+local function get_jdtls()
+    -- Find the full path to the directory where Mason has downloaded the JDTLS binaries
+    local jdtls_path = "/Users/test/.local/share/nvim/mason/packages/jdtls"
+    local shared_config_path = jdtls_path .. "/config_mac"
+    -- Obtain the path to the jar which runs the language server
+    local launcher = vim.fn.glob(jdtls_path .. "/plugins/org.eclipse.equinox.launcher_*.jar")
+    -- Declare white operating system we are using, windows use win, macos use mac
+    local SYSTEM = "linux"
+    -- Obtain the path to configuration files for your specific operating system
+    local config = jdtls_path .. "/config_" .. SYSTEM
+    -- Obtain the path to the Lomboc jar
+    local lombok = jdtls_path .. "/lombok.jar"
+    return launcher, lombok, shared_config_path
+end
+
+local launcher, lombok, shared_config_path = get_jdtls()
+
+vim.lsp.config("jdtls", {
+    cmd = {
+        'java',
+        '-Declipse.application=org.eclipse.jdt.ls.core.id1',
+        '-Dosgi.bundles.defaultStartLevel=4',
+        '-Declipse.product=org.eclipse.jdt.ls.core.product',
+        "-Dosgi.checkConfiguration=true",
+        "-Dosgi.sharedConfiguration.area=" .. shared_config_path,
+        "-Dosgi.sharedConfiguration.area.readOnly=true",
+        "-Dosgi.configuration.cascaded=true",
+        '-Dlog.protocol=true',
+        '-Dlog.level=ALL',
+        '-Xmx1g',
+        '--add-modules=ALL-SYSTEM',
+        '--add-opens', 'java.base/java.util=ALL-UNNAMED',
+        '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
+        '-javaagent:' .. lombok,
+        '-jar',
+        launcher,
+        '-configuration',
+        get_jdtls_config_dir(),
+        '-data',
+        get_jdtls_workspace_dir(),
+        get_jdtls_jvm_args(),
+    },
+    filetypes = { 'java' },
+    root_markers = {
+        -- Multi-module projects
+        '.git',
+        'build.gradle',
+        'build.gradle.kts',
+        -- Single-module projects
+        'build.xml',           -- Ant
+        'pom.xml',             -- Maven
+        'settings.gradle',     -- Gradle
+        'settings.gradle.kts', -- Gradle
+    },
+    settings = {
+        java = {
+            -- Enable method signature help
+            signatureHelp = {
+                enabled = true
+            },
+            implementationCodeLens = "all",
+            referencesCodeLens = {
+                enabled = true
+            },
+            maven = {
+                downloadSources = true
+            },
+            configuration = {
+                updateBuildConfiguration = "interactive"
+            },
+            
+        
+            
+        },
+    },
+})
+
+
 vim.lsp.enable({
     "lua_ls",
-    "java_ls",
+    "jdtls",
 })
 
 vim.diagnostic.config({
