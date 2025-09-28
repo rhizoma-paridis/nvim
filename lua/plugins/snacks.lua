@@ -91,6 +91,7 @@ return {
             { "<leader>S",       function() Snacks.scratch.select() end,                                 desc = "Select Scratch Buffer" },
             { "<leader>n",       function() Snacks.notifier.show_history() end,                          desc = "Notification History" },
             { "<leader>bd",      function() Snacks.bufdelete() end,                                      desc = "Delete Buffer" },
+            { "<leader>bo",      function() Snacks.bufdelete.other() end,                                { desc = "Delete Other Buffers" } },
             { "<leader>cR",      function() Snacks.rename.rename_file() end,                             desc = "Rename File" },
             { "<leader>gB",      function() Snacks.gitbrowse() end,                                      desc = "Git Browse",               mode = { "n", "v" } },
             { "<leader>gg",      function() Snacks.lazygit() end,                                        desc = "Lazygit" },
@@ -149,7 +150,7 @@ return {
                         { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 }):map("<leader>uc")
                     Snacks.toggle.treesitter():map("<leader>uT")
                     Snacks.toggle.option("background", { off = "light", on = "dark", name = "Dark Background" }):map(
-                    "<leader>ub")
+                        "<leader>ub")
                     Snacks.toggle.inlay_hints():map("<leader>uh")
                     Snacks.toggle.indent():map("<leader>ug")
                     Snacks.toggle.dim():map("<leader>uD")
