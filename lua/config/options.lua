@@ -38,3 +38,8 @@ vim.opt.clipboard = "unnamedplus" -- 使用系统剪贴板
 vim.opt.hlsearch = true -- 搜索时高亮所有匹配项
 vim.opt.ignorecase = true -- 搜索时忽略大小写
 vim.opt.smartcase = true -- 搜索时包含大写字母则区分大小写
+
+vim.o.foldcolumn = '1'      -- 显示折叠列（可选）
+vim.o.foldlevel = 99        -- ufo 需要较大的 foldlevel 值
+vim.o.foldlevelstart = 99   -- 打开文件时不自动折叠（由 ufo 控制）
+vim.o.foldenable = true     -- 启用折叠
