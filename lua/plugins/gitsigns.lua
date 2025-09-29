@@ -3,7 +3,6 @@ return {
     event = "VeryLazy",
     opts = {
         on_attach = function(buffer)
-            print("gitsigns attached to buffer: " .. buffer)
             local wk = require("which-key")
             local gs = require("gitsigns")
             wk.add({
