@@ -19,10 +19,15 @@ map("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move Up" })
 map("v", "<A-j>", ":<C-u>execute \"'<,'>move '>+\" . v:count1<cr>gv=gv", { desc = "Move Down" })
 map("v", "<A-k>", ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv=gv", { desc = "Move Up" })
 
-map({"n", "v"}, "<leader>qq", "<cmd>qa<cr>", { desc = "Quit All" })
-map({"n", "v"}, "<leader>qw", "<cmd>q<cr>", { desc = "Close Window" })
+map({ "n", "v" }, "<leader>qq", "<cmd>qa<cr>", { desc = "Quit All" })
+map({ "n", "v" }, "<leader>qw", "<cmd>q<cr>", { desc = "Close Window" })
 
 -- Code
-map({"n", "v"}, "<leader>ca", vim.lsp.buf.code_action, {desc = "Code Action"})
-map({"n", "v"}, "<leader>cc", vim.lsp.codelens.refresh, {desc = "Run Codelens"})
-map({"n", "v"}, "<leader>cf", function() vim.lsp.buf.format { async = true } end, { desc = "Format Document" })
+map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Action" })
+map({ "n", "v" }, "<leader>cc", vim.lsp.codelens.refresh, { desc = "Run Codelens" })
+map({ "n", "v" }, "<leader>cf", function() vim.lsp.buf.format { async = true } end, { desc = "Format Document" })
+
+map("n", "<c-/>", function() Snacks.terminal() end, { desc = "Terminal (cwd)" })
+map("t", "<C-/>", "<cmd>close<cr>", { desc = "Hide Terminal" })
+
+map("n", "<leader>gg", function() Snacks.lazygit() end, { desc = "Lazygit (cwd)" })
