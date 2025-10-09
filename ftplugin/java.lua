@@ -21,6 +21,11 @@ local function get_lombok()
     return unpack(args)
 end
 
+-- 需要安装的 DAP 适配器和工具
+local bundles = {}
+bundles = vim.fn.glob("$MASON/share/java-debug-adapter/com.microsoft.java.debug.plugin-*jar", false, true)
+vim.list_extend(bundles, vim.fn.glob("$MASON/share/java-test/*.jar", false, true))
+
 local config = {
     name = "jdtls",
     cmd = {
@@ -32,6 +37,9 @@ local config = {
         get_lombok(),
     },
     root_dir = vim.fs.root(0, { ".git", "mvnw", "gradlew" }),
+    init_options = {
+        bundles = bundles,
+    },
     settings = {
         java = {
             import = {

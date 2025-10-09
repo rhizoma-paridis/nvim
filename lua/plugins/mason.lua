@@ -45,6 +45,9 @@ return {
 
                 -- Java LSP
                 "jdtls",
+                -- DAP (Debug Adapter Protocol) servers
+                "java-debug-adapter",
+                "java-test",
             },
         },
         config = function(_, opts)
