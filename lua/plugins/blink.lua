@@ -1,7 +1,7 @@
 return {
     {
         'saghen/blink.cmp',
-        dependencies = { 'rafamadriz/friendly-snippets' },
+        dependencies = { 'rafamadriz/friendly-snippets', "fang2hou/blink-copilot" },
         version = '1.*',
         event = { "InsertEnter", "CmdlineEnter" },
         ---@module 'blink.cmp'
@@ -39,6 +39,14 @@ return {
             -- elsewhere in your config, without redefining it, due to `opts_extend`
             sources = {
                 default = { 'lsp', 'path', 'snippets', 'buffer' },
+                -- providers = {
+                --     copilot = {
+                --         name = "copilot",
+                --         module = "blink-copilot",
+                --         score_offset = 100,
+                --         async = true,
+                --     },
+                -- },
             },
             cmdline = {
                 enabled = true,
