@@ -24,7 +24,22 @@ return {
                 }
             },
             explorer = { enabled = true },
-            indent = { enabled = true },
+            indent = { 
+                enabled = true,
+                indent = {
+                    char = "┆",
+                },
+                animate = {
+                    -- easing = "outBounce",
+                    duration = {
+                        step = 10,
+                        duration = 100,
+                    }
+                },
+                scope = {
+                    char = "┆",
+                },
+            },
             input = { enabled = true },
             notifier = {
                 enabled = true,
