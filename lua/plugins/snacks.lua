@@ -38,6 +38,7 @@ return {
                 },
                 scope = {
                     char = "┆",
+                    hl = "SnacksIndent1",
                 },
             },
             input = { enabled = true },
