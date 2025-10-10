@@ -22,6 +22,7 @@ return {
                     },
                 },
                 menu = {
+                    border = 'rounded',
                     draw = {
                         treesitter = { "lsp" },
                     },
@@ -29,6 +30,9 @@ return {
                 documentation = {
                     auto_show = true,
                     auto_show_delay_ms = 200,
+                    window = {
+                        border = 'rounded'
+                    },
                 },
                 ghost_text = {
                     enabled = true,
@@ -38,15 +42,15 @@ return {
             -- Default list of enabled providers defined so that you can extend it
             -- elsewhere in your config, without redefining it, due to `opts_extend`
             sources = {
-                default = { 'lsp', 'path', 'snippets', 'buffer' },
-                -- providers = {
-                --     copilot = {
-                --         name = "copilot",
-                --         module = "blink-copilot",
-                --         score_offset = 100,
-                --         async = true,
-                --     },
-                -- },
+                default = {"copilot", 'lsp', 'path', 'snippets', 'buffer' },
+                providers = {
+                    copilot = {
+                        name = "copilot",
+                        module = "blink-copilot",
+                        score_offset = 100,
+                        async = true,
+                    },
+                },
             },
             cmdline = {
                 enabled = true,

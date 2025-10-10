@@ -5,15 +5,13 @@ return {
         build = ":Copilot auth",
         event = "BufReadPost",
         opts = {
-            suggestion = {
-                enabled = true,
-                auto_trigger = true,
-                keymap = {
-                    accept = "<C-CR>", 
-                },
-            },
+            suggestion = { enabled = false },
             panel = { enabled = false },
-           
+            filetypes = {
+                markdown = true,
+                help = true,
+            },
+
         },
     },
 }
