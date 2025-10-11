@@ -4,8 +4,8 @@ vim.opt.relativenumber = true -- 显示相对行号
 vim.opt.numberwidth = 2 -- 设置行号栏宽度为2
 vim.opt.signcolumn = "yes" -- 始终显示标记列
 vim.opt.wrap = false -- 不自动换行，长行显示为一行
-vim.opt.scrolloff = 1 -- 光标上下保留10行
-vim.opt.sidescrolloff = 3 -- 光标左右保留8列
+vim.opt.scrolloff = 1 -- 光标上下保留1行
+vim.opt.sidescrolloff = 1 -- 光标左右保留1列
 
 -- Tab缩进及行为
 vim.opt.expandtab = true -- 将Tab键转换为空格
