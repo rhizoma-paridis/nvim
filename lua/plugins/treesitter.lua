@@ -47,15 +47,19 @@ return {
                         goto_next_start = {
                             ["]f"] = "@function.outer",
                             ["]c"] = "@class.outer",
+                            ["]p"] = "@parameter.inner",
                         },
                         goto_next_end = {
                             ["]F"] = "@function.outer",
+                            ["]P"] = "@parameter.inner",
                         },
                         goto_previous_start = {
                             ["[f"] = "@function.outer",
+                            ["[p"] = "@parameter.inner",
                         },
                         goto_previous_end = {
                             ["[F"] = "@function.outer",
+                            ["[P"] = "@parameter.inner",
                         },
                     },
                 },

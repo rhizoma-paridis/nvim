@@ -50,6 +50,11 @@ local config = {
                     enabled = true
                 }
             },
+            inlayHints = {
+              parameterNames = {
+                enabled = "all",
+              },
+            },
             -- Enable method signature help
             signatureHelp = {
                 enabled = true
