@@ -48,6 +48,11 @@ return {
                 -- DAP (Debug Adapter Protocol) servers
                 "java-debug-adapter",
                 "java-test",
+
+                -- rust
+                "rust-analyzer",
+                "codelldb", -- Rust debugger
+                "bacon",    -- Rust linter (alternative to rust-analyzer diagnostics)
             },
         },
         config = function(_, opts)

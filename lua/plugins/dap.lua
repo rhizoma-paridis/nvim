@@ -87,4 +87,13 @@ return {
       end
     end,
   },
+  {
+    "nvim-neotest/neotest",
+    optional = true,
+    opts = {
+      adapters = {
+        ["rustaceanvim.neotest"] = {},
+      },
+    },
+  },
 }

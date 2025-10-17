@@ -22,6 +22,8 @@ return {
                     "java",
                     -- "javascript",
                     -- "css"
+                    "rust",
+                    "ron",
                 },
                 incremental_selection = {
                     enable = true,
