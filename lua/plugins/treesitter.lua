@@ -57,6 +57,7 @@ return {
                         },
                         goto_previous_start = {
                             ["[f"] = "@function.outer",
+                            ["[c"] = "@class.outer",
                             ["[p"] = "@parameter.inner",
                         },
                         goto_previous_end = {
