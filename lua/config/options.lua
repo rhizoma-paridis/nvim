@@ -43,3 +43,6 @@ vim.o.foldcolumn = '1'      -- 显示折叠列（可选）
 vim.o.foldlevel = 99        -- ufo 需要较大的 foldlevel 值
 vim.o.foldlevelstart = 99   -- 打开文件时不自动折叠（由 ufo 控制）
 vim.o.foldenable = true     -- 启用折叠
+
+
+vim.lsp.inlay_hint.enable(true)  -- 全局启用 LSP 内联提示
